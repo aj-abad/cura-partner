@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import DesktopSignIn from "../views/DesktopSignIn"
+import DesktopSignIn from "../views/Desktop/SignIn"
 
 Vue.use(VueRouter)
 
