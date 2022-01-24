@@ -13,7 +13,7 @@ const routes = [
   },
   {
     path: '/desktop:signin',
-    name: 'SignIn',
+    name: 'DesktopSignIn',
     component: DesktopSignIn
   }
 ]
