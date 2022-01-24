@@ -1,0 +1,4 @@
+.theme--light.v-application,
+.theme--light .v-application--wrap {
+  background: transparent !important;
+}
