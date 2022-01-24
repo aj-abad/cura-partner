@@ -5,6 +5,8 @@ import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
+
+
 // Scheme must be registered before the app is ready
 protocol.registerSchemesAsPrivileged([
   { scheme: 'app', privileges: { secure: true, standard: true } }
@@ -29,6 +31,8 @@ async function createWindow() {
     width: 480,
     height: 320,
     frame: false,
+    transparent: true,
+    resizable: false,
     webPreferences: {
       nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION,
       contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION
@@ -41,6 +45,7 @@ async function createWindow() {
     // Load the url of the dev server if in development mode
     win.setMenu(null)
     await win.loadURL(process.env.WEBPACK_DEV_SERVER_URL)
+    win.hide();
     loginWindow.setMenu(null)
     loginWindow.loadURL(process.env.WEBPACK_DEV_SERVER_URL + "desktop:signin")
 
