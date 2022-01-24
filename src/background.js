@@ -25,15 +25,30 @@ async function createWindow() {
     }
   })
 
+  const loginWindow = new BrowserWindow({
+    width: 480,
+    height: 320,
+    frame: false,
+    webPreferences: {
+      nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION,
+      contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION
+    }
+  })
+
+  console.log(process.env.WEBPACK_DEV_SERVER_URL)
+
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
+    win.setMenu(null)
     await win.loadURL(process.env.WEBPACK_DEV_SERVER_URL)
+    loginWindow.setMenu(null)
+    loginWindow.loadURL(process.env.WEBPACK_DEV_SERVER_URL + "desktop:signin")
+
     if (!process.env.IS_TEST) win.webContents.openDevTools()
   } else {
     createProtocol('app')
     // Load the index.html when not in development
-    win.setMenu(null)
-    win.loadURL('app://./index.html')
+    // win.loadURL('app://./index.html')
   }
 }
 
