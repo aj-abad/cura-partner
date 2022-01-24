@@ -14,7 +14,10 @@ const routes = [
   {
     path: '/desktop:signin',
     name: 'DesktopSignIn',
-    component: DesktopSignIn
+    component: DesktopSignIn,
+    meta: {
+      isTransparent: true
+    }
   }
 ]
 

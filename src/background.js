@@ -5,14 +5,36 @@ import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
-
-
 // Scheme must be registered before the app is ready
 protocol.registerSchemesAsPrivileged([
   { scheme: 'app', privileges: { secure: true, standard: true } }
 ])
 
-async function createWindow() {
+
+const token = null
+
+
+
+
+
+async function createSignInWindow() {
+  const loginWindow = new BrowserWindow({
+    width: 480,
+    height: 320,
+    frame: false,
+    transparent: true,
+    resizable: false,
+    webPreferences: {
+      nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION,
+      contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION
+    }
+  })
+  loginWindow.setMenu(null)
+  loginWindow.loadURL(process.env.WEBPACK_DEV_SERVER_URL + "desktop:signin")
+}
+
+
+async function createMainWindow() {
   // Create the browser window.
   const win = new BrowserWindow({
     width: 800,
@@ -27,27 +49,13 @@ async function createWindow() {
     }
   })
 
-  const loginWindow = new BrowserWindow({
-    width: 480,
-    height: 320,
-    frame: false,
-    transparent: true,
-    resizable: false,
-    webPreferences: {
-      nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION,
-      contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION
-    }
-  })
 
-  console.log(process.env.WEBPACK_DEV_SERVER_URL)
+
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
     win.setMenu(null)
     await win.loadURL(process.env.WEBPACK_DEV_SERVER_URL)
-    win.hide();
-    loginWindow.setMenu(null)
-    loginWindow.loadURL(process.env.WEBPACK_DEV_SERVER_URL + "desktop:signin")
 
     if (!process.env.IS_TEST) win.webContents.openDevTools()
   } else {
@@ -69,7 +77,8 @@ app.on('window-all-closed', () => {
 app.on('activate', () => {
   // On macOS it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
-  if (BrowserWindow.getAllWindows().length === 0) createWindow()
+  if (BrowserWindow.getAllWindows().length === 0)
+    token ? createMainWindow() : createSignInWindow()
 })
 
 // This method will be called when Electron has finished
@@ -84,7 +93,7 @@ app.on('ready', async () => {
       console.error('Vue Devtools failed to install:', e.toString())
     }
   }
-  createWindow()
+  token ? createMainWindow() : createSignInWindow()
 })
 
 // Exit cleanly on request from parent process in development mode.
