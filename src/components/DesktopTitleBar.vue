@@ -30,9 +30,9 @@ export default {
   name: "DesktopTitleBar",
   computed: {
     style() {
-      const isSignIn = this.$route.name === "DesktopSignIn";
+      const isTransparent = this.$route.meta.isTransparent;
       return {
-        borderRadius: isSignIn ? "8px 8px 0 0" : 0,
+        borderRadius: isTransparent ? "8px 8px 0 0" : 0,
       };
     },
   },
