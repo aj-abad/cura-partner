@@ -1,31 +1,15 @@
 <template>
   <div id="app">
     <v-app>
-      <desktop-title-bar />
-      <router-view id="view" />
+      <view-container />
     </v-app>
   </div>
 </template>
 
 <script>
-import DesktopTitleBar from "@/components/DesktopTitleBar";
+import ViewContainer from "./components/ViewContainer.vue";
 export default {
-  components: { DesktopTitleBar },
+  components: { ViewContainer },
   name: "App",
 };
 </script>
-
-<style lang="stylus">
-#view {
-  position: absolute;
-  height: calc(100vh - 32px);
-  width: 100vw;
-  top: 32px;
-  left: 0;
-  overflow: auto;
-
-  &:not(.transparent) {
-    background-color: white;
-  }
-}
-</style>
