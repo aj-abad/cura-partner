@@ -20,7 +20,7 @@ const token = null
 async function createSignInWindow() {
   const loginWindow = new BrowserWindow({
     width: 480,
-    height: 320,
+    height: 407,
     frame: false,
     transparent: true,
     resizable: false,
