@@ -1,4 +1,11 @@
-.theme--light.v-application,
-.theme--light .v-application--wrap {
+.theme--dark.v-application,
+.theme--dark .v-application--wrap {
   background: transparent !important;
+}
+
+.theme--dark.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state):not(.v-input--is-disabled)
+  > .v-input__control
+  > .v-input__slot:hover
+  fieldset {
+  color: var(--v-primary-transparent-3);
 }
