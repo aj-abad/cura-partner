@@ -25,6 +25,7 @@
         style="padding: 0; height: 32px; width: 48px"
         elevation="0"
         v-ripple="{ class: 'red--text' }"
+        @click="$ipc.send('close')"
       >
         <v-icon style="transform: scale(0.87)"> mdi-close </v-icon>
       </v-btn>

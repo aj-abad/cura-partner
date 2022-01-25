@@ -12,6 +12,10 @@ protocol.registerSchemesAsPrivileged([
 //TODO check if user is logged in on app start
 const token = null
 
+ipcMain.on("close", (event, arg) => {
+  BrowserWindow.getAllWindows().forEach(w => w.close())
+})
+
 
 async function createSignInWindow() {
   const loginWindow = new BrowserWindow({
