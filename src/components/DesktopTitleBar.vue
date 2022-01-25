@@ -1,5 +1,10 @@
 <template>
-  <div id="app-title-bar" style="height: 32px; z-index: 100" :style="style">
+  <div
+    class="bglight"
+    id="app-title-bar"
+    style="height: 32px; z-index: 100"
+    :style="style"
+  >
     <div style="flex-grow: 1; -webkit-app-region: drag"></div>
     <div id="close-button">
       <!-- <v-btn
@@ -12,7 +17,7 @@
         <v-icon style="transform: scale(0.87)"> mdi-minus </v-icon>
       </v-btn> -->
       <v-btn
-        color="white"
+        color="bglight"
         x-small
         tile
         style="padding: 0; height: 32px; width: 48px"
@@ -29,10 +34,12 @@
 export default {
   name: "DesktopTitleBar",
   computed: {
+    isWindowTransparent() {
+      return this.$route.meta.isTransparent;
+    },
     style() {
-      const isTransparent = this.$route.meta.isTransparent;
       return {
-        borderRadius: isTransparent ? "8px 8px 0 0" : 0,
+        borderRadius: this.isWindowTransparent ? "8px 8px 0 0" : 0,
       };
     },
   },
@@ -42,7 +49,6 @@ export default {
 <style lang="stylus" scoped>
 #app-title-bar {
   display: flex;
-  background: white;
   overflow: hidden;
 }
 </style>
