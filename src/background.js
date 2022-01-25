@@ -9,6 +9,9 @@ const isDevelopment = process.env.NODE_ENV !== 'production'
 protocol.registerSchemesAsPrivileged([
   { scheme: 'app', privileges: { secure: true, standard: true } }
 ])
+//TODO check if user is logged in on app start
+const token = null
+
 
 async function createSignInWindow() {
   const loginWindow = new BrowserWindow({
