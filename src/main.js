@@ -8,7 +8,7 @@ import "./assets/main.css"
 import "./assets/overrides.css"
 
 Vue.config.productionTip = false
-
+Vue.prototype.$ipc = window.ipcRenderer
 new Vue({
   router,
   store,
