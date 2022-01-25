@@ -35,7 +35,7 @@ export default {
   }
 
   &:not(.transparent) {
-    background-color: white;
+    background-color: var(--v-bgdark-base);
   }
 }
 </style>
