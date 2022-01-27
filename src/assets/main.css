@@ -3,19 +3,20 @@
   overscroll-behavior: none;
 }
 
-:root {
-  --primary: rgba(13, 130, 110);
-  --primary-translucent: rgba(13, 130, 110, 0.5);
-  --primary-translucent-1: rgba(13, 130, 110, 0.15);
-}
-
 ::selection {
-  background-color: var(--primary-translucent-1);
-  color: black;
+  background-color: var(--v-primary-transparent3);
 }
 
 a {
   text-decoration: none;
+  transition: 0.3s;
+}
+a:not([disabled]):hover {
+  filter: brightness(1.2);
+}
+a:focus {
+  outline: none !important;
+  box-shadow: 0 0 0 2px var(--primary-translucent-1);
 }
 
 .btn-icon {
