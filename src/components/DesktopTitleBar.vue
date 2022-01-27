@@ -20,6 +20,7 @@
       <v-btn
         tabindex="-1"
         color="bgdark"
+        class="close-btn"
         x-small
         tile
         style="padding: 0; height: 32px; width: 48px"
@@ -53,5 +54,13 @@ export default {
 #app-title-bar {
   display: flex;
   overflow: hidden;
+}
+
+.theme--dark.v-btn.close-btn::before {
+  background: #cd1a2b !important;
+}
+
+.theme--dark.v-btn.close-btn:hover::before {
+  opacity: 0.7 !important;
 }
 </style>
