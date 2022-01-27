@@ -1,6 +1,6 @@
 'use strict'
 
-import { app, protocol, BrowserWindow, IpcMain, ipcMain } from 'electron'
+import { app, protocol, BrowserWindow, ipcMain } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
 const isDevelopment = process.env.NODE_ENV !== 'production'
@@ -13,7 +13,8 @@ protocol.registerSchemesAsPrivileged([
 const token = null
 
 ipcMain.on("close", (event, arg) => {
-  BrowserWindow.getAllWindows().forEach(w => w.close())
+  app.quit()
+
 })
 
 
@@ -33,13 +34,10 @@ async function createSignInWindow() {
   // loginWindow.webContents.openDevTools()
   loginWindow.setMenu(null)
   loginWindow.loadURL(process.env.WEBPACK_DEV_SERVER_URL + "desktop:signin")
-
+  loginWindow.on("ready-to-show", () => loginWindow.show())
   ipcMain.on("successful-signin", (event, arg) => {
     loginWindow.close()
   })
-
-
-
 }
 
 
