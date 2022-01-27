@@ -6,6 +6,7 @@ import store from './store'
 import vuetify from './plugins/vuetify'
 import "./assets/main.css"
 import "./assets/overrides.css"
+import "./sass/opacity.sass"
 
 Vue.config.productionTip = false
 Vue.prototype.$ipc = window.ipcRenderer
