@@ -1,5 +1,5 @@
 <template>
-  <main
+  <aside
     class="bgdark"
     id="app-title-bar"
     style="height: 32px; z-index: 100"
@@ -11,7 +11,7 @@
         <small style="opacity: 0.75"> v{{ version }} </small>
       </div>
     </div>
-    <div id="close-button">
+    <div>
       <v-btn
         tabindex="-1"
         color="bgdark"
@@ -26,6 +26,18 @@
       <v-btn
         tabindex="-1"
         color="bgdark"
+        x-small
+        tile
+        style="padding: 0; height: 32px; width: 48px"
+        elevation="0"
+        @click="dialog = !dialog"
+      >
+        <v-icon style="transform: scale(0.87)"> mdi-rectangle-outline </v-icon>
+      </v-btn>
+
+      <v-btn
+        tabindex="-1"
+        color="bgdark"
         class="close-btn"
         x-small
         tile
@@ -37,7 +49,7 @@
         <v-icon style="transform: scale(0.87)"> mdi-close </v-icon>
       </v-btn>
     </div>
-  </main>
+  </aside>
 </template>
 
 <script>
@@ -60,9 +72,6 @@ export default {
       };
     },
   },
-  created(){
-    console.log(this.$ipc)
-  }
 };
 </script>
 
