@@ -1,14 +1,14 @@
 <template>
   <div>
-    <desktop-title-bar v-if="isElectron" />
-    <router-view :class="{ electron: isElectron }" id="view" />
+    <desktop-title-bar v-if="isElectron && !$route.meta?.hideTitleBar" />
+    <router-view :class="{ electron: isElectron, 'hide-title-bar': $route.meta.hideTitleBar }" id="view" />
   </div>
 </template>
 
 <script>
 import isElectron from "is-electron";
 
-import DesktopTitleBar from "@/components/DesktopTitleBar";
+import DesktopTitleBar from "@/components/Desktop/TitleBar";
 export default {
   name: "ViewContainer",
   components: {
@@ -29,7 +29,7 @@ export default {
   left: 0;
   overflow: auto;
 
-  &.electron {
+  &.electron:not(.hide-title-bar) {
     height: calc(100vh - 32px);
     top: 32px;
   }
