@@ -8,11 +8,6 @@ module.exports = {
         return options
       })
   },
-  pluginOptions: {
-    electronBuilder: {
-      preload: 'src/preload.js',
-    }
-  },
   transpileDependencies: [
     'vuetify'
   ]
