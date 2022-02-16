@@ -9,5 +9,3 @@ contextBridge.exposeInMainWorld('ipcRenderer', {
     ipcRenderer.on(channel, (event, ...args) => func(...args))
   }
 })
-
-alert("test")
